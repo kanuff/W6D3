@@ -17,21 +17,13 @@ const APIUtil = {
     })
   },
 
-  searchUsers(queryVal, success){
-    debugger
+  searchUsers(queryVal){
     return $.ajax({
       type: "GET",
       url: '/users/search',
       data: {query: queryVal},
-      dataType: 'json',
-      success: success,
-      error: (err) => {
-        console.log(err[0])
-
-        debugger
-      }
+      dataType: 'json'
     })
-    debugger
   }
 
 }

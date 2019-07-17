@@ -112,21 +112,13 @@ const APIUtil = {
     })
   },
 
-  searchUsers(queryVal, success){
-    debugger
+  searchUsers(queryVal){
     return $.ajax({
       type: "GET",
       url: '/users/search',
       data: {query: queryVal},
-      dataType: 'json',
-      success: success,
-      error: (err) => {
-        console.log(err[0])
-
-        debugger
-      }
+      dataType: 'json'
     })
-    debugger
   }
 
 }
@@ -253,10 +245,12 @@ class UsersSearch {
 
   handleInput(e){
     e.preventDefault();
-    APIUtil.searchUsers(this.$input.val(), (response) =>{
-      console.log(response);
+    APIUtil.searchUsers(this.$input.val())
+    .then( (response) =>{
+      const $li = $("<li>")
+      $li.append(response[0].username)
+      this.$ul.append($li)
     })
-    debugger
   }
 }
 
